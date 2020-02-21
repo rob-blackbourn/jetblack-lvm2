@@ -1,5 +1,6 @@
 """Exceptions"""
 
+
 class LVMException(Exception):
     """An LVM Exception"""
 

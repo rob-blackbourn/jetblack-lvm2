@@ -1,4 +1,4 @@
-"""Conversion"""
+"""bindings"""
 
 from ctypes.util import find_library
 from ctypes import CDLL, c_char_p, c_int, c_ulong, c_ulonglong, c_uint64
@@ -8,8 +8,7 @@ from .types import (
     dm_list_t,
     vg_t,
     lv_t,
-    pv_t,
-    lvm_pv_list_p
+    pv_t
 )
 
 lib = find_library("lvm2app")
@@ -242,7 +241,7 @@ lvm_vg_get_seqno = lvmlib.lvm_vg_get_seqno
 lvm_vg_get_seqno.argtypes = [vg_t]
 lvm_vg_get_seqno.restype = c_ulonglong
 
-## PV Functions
+# PV Functions
 
 # lvm_pv_remove
 lvm_pv_remove = lvmlib.lvm_pv_remove
@@ -292,7 +291,7 @@ lvm_pv_from_name = lvmlib.lvm_pv_from_name
 lvm_pv_from_name.argtypes = [vg_t, c_char_p]
 lvm_pv_from_name.restype = pv_t
 
-## LV Functions
+# LV Functions
 
 # lvm_lv_get_name
 lvm_lv_get_name = lvmlib.lvm_lv_get_name

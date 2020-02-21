@@ -11,15 +11,22 @@ from .bindings import (
     lvm_pv_get_free
 )
 
+
 class PhysicalVolume:
+    """A physical volume"""
 
     def __init__(self, handle: Any) -> None:
+        """A physical volume
+
+        Args:
+            handle (Any): The handle
+        """
         self.handle = handle
 
     @property
     def name(self) -> str:
         """The name of the phiscal volume
-        
+
         Returns:
             str: The name
         """
@@ -29,7 +36,7 @@ class PhysicalVolume:
     @property
     def uuid(self) -> str:
         """The uuid of the phiscal volume
-        
+
         Returns:
             str: The uuid
         """
@@ -39,7 +46,7 @@ class PhysicalVolume:
     @property
     def mda_count(self) -> int:
         """Get the current number of metadata areas in the physical volume.
-        
+
         Returns:
             int: Number of metadata areas in the PV.
         """
@@ -49,7 +56,7 @@ class PhysicalVolume:
     def dev_size(self) -> int:
         """The current size in bytes of a device underlying a
         physical volume.
-        
+
         Returns:
             int: Size in bytes.
         """
@@ -58,7 +65,7 @@ class PhysicalVolume:
     @property
     def size(self) -> int:
         """The current size in bytes of a physical volume.
-        
+
         Returns:
             int: Size in bytes.
         """
@@ -67,7 +74,7 @@ class PhysicalVolume:
     @property
     def free(self) -> int:
         """The current unallocated space in bytes of a physical volume.
-        
+
         Returns:
             int: Free size in bytes.
         """

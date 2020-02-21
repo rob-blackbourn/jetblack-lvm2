@@ -18,19 +18,26 @@ from .exceptions import LVMException
 
 
 class LogicalVolume:
+    """A logical volume"""
 
     def __init__(
             self,
             handle: Any,
             create_exception: Callable[[], LVMException]
     ) -> None:
+        """Initialise a logical volume
+
+        Args:
+            handle (Any): The handle
+            create_exception (Callable[[], LVMException]): An exception factory
+        """
         self.handle = handle
         self._create_exception = create_exception
 
     @property
     def name(self) -> str:
         """The name of the logical volume.
-        
+
         Returns:
             str: The logical volume name.
         """
@@ -39,7 +46,7 @@ class LogicalVolume:
     @property
     def uuid(self) -> str:
         """The uuid of the logical volume.
-        
+
         Returns:
             str: The logical volume uuid.
         """
@@ -48,7 +55,7 @@ class LogicalVolume:
     @property
     def size(self) -> int:
         """The size in bytes of a logical volume.
-        
+
         Returns:
             int: Size in bytes.
         """
@@ -57,7 +64,7 @@ class LogicalVolume:
     @property
     def is_active(self) -> bool:
         """the current activation state of a logical volume.
-        
+
         Returns:
             bool: True if the LV is active in the kernel.
         """
@@ -73,7 +80,7 @@ class LogicalVolume:
     @property
     def is_suspended(self) -> bool:
         """The current suspended state of a logical volume.
-        
+
         Returns:
             bool: True if the LV is suspended in the kernel.
         """
@@ -82,7 +89,7 @@ class LogicalVolume:
     @property
     def attr(self) -> str:
         """The attributes of a logical volume.
-        
+
         Returns:
             str: The logical volume attributes.
         """
@@ -91,7 +98,7 @@ class LogicalVolume:
     @property
     def origin(self) -> Optional[str]:
         """Get the origin of a snapshot.
-        
+
         Returns:
             str: Null if the logical volume is not a snapshot, else origin name.
         """
@@ -100,9 +107,9 @@ class LogicalVolume:
 
     def activate(self) -> None:
         """ Activate a logical volume.
-        
+
         This function is the equivalent of the lvm command "lvchange -ay".
-        
+
         NOTE: This function cannot currently handle LVs with an in-progress pvmove or
         lvconvert.
 
@@ -115,7 +122,7 @@ class LogicalVolume:
 
     def deactivate(self):
         """Deactivate a logical volume.
-        
+
         Raises:
             LVMException: If the operation was not successful.
         """
@@ -125,7 +132,7 @@ class LogicalVolume:
 
     def remove(self):
         """Remove a logical volume from a volume group.
-        
+
         This function commits the change to disk and does _not_ require calling
         lvm_vg_write().
 
